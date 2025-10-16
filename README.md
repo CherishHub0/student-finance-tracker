@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 FinanceTracker
 
 FinanceTracker is a simple web app that helps students (and anyone, really) track their spending, manage budgets, and understand where their money goes.
@@ -193,3 +193,5 @@ Example matches: "coffee coffee", "the the"
 # Wire frame(link)
 https://excalidraw.com/
 >>>>>>> c6a37e232f1e85c97d89b864c9bd3b6478c80100
+# Demo video link
+https://www.loom.com/share/85c9a7319188464e8473f38539259e28?sid=0d1a3abe-0b5e-42a8-887d-bea4be5d3c7f

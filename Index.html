@@ -1,0 +1,241 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FinanceTracker</title>
+      <link rel="stylesheet" href="style/main.css">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    </head>
+    <body>
+      <a href="#home" class="skip-link">Skip to main content</a>
+      <!-- nav bar -->
+      <header class="navbar">
+        <div class="logo">FinanceTracker</div>
+        <nav>
+          <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About & Contact</a></li>
+          <li><a href="#stats">Dashboard</a></li>
+          <li><a href="#add-record">Records Table</a></li>
+          <li><a href="#edit-form">Edit form</a></li>
+          <li><a href="#settings">Settings</a></li>
+          </ul>
+        </nav>
+      </header>
+
+
+      <!-- home -->
+      <section id="home" class="home">
+        <div class="home-text">
+          <h1>Track Your Finances Effortlessly</h1>
+          <p>Monitor your spending, manage your savings, and stay in control, this is an all in one simple and interactive platform.</p>
+          <a href="#stats" class="btn">View Dashboard</a>
+        </div>
+      </section>
+
+
+      <section id="about" class="about">
+        <h2>About FinanceTracker</h2>
+        <p>
+          FinanceTracker is designed to help students take control of their finances. Managing money as a student can be challenging, and our goal is to make it simple and intuitive.
+        </p>
+          With easy-to-use budgeting tools, transaction tracking, and clear visualizations, you can understand your spending habits and make better financial decisions.
+        </p>
+        <ul>
+          <li>Track all your income and expenses in one place</li>
+          <li>Set budgets for different categories and monitor your spending</li>
+          <li>Search and filter transactions to find what you need</li>
+          <li>Visualize your financial health with clear dashboards</li>
+        </ul>
+
+        <div class="contact">
+        <h2>Contact</h2>
+        <p>
+          Have questions, feedback, or suggestions? Feel free to reach out!
+        </p>
+        <p><a href="mailto:c.yusuf@alustudent.com">Email</a></p>
+        <p><a href="https://github.com/Cherishhub0" target="_blank">GitHub</a></p>
+      </section>
+
+      <!-- transaction form -->
+    <section id="add-record" class="add-record">
+      <h2>Add a New Transaction</h2>
+      <form id="record-form">
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" placeholder="Lunch at cafeteria" required>
+        </div>
+
+        <div class="form-group">
+          <label for="amount">Amount (R₣)</label>
+          <input type="number" step="0.01" id="amount" name="amount" placeholder="1,000" required>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="">Select category</option>
+            <option value="Food">Food</option>
+            <option value="Books">Books</option>
+            <option value="Transport">Transport</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Fees">Fees</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <button type="submit" class="btn">Add Transaction</button>
+      </form>
+    </section>
+
+    <!-- table section -->
+    <section id="edit-form" class="edit-form">
+      <h2>All Transactions</h2>
+      <!-- search box -->
+      <input type="text" id="search-box" placeholder="Search transactions...">
+      <div id="transactions-container"></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Amount (R₣)</th>   
+            <th>Category</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="records-table-body">
+          <!-- Dynamic rows inserted by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- settings section -->
+    <section id="settings" class="settings">
+      <h2>Settings</h2>
+      <p>
+      Configure your budget settings
+      </p>
+    <form id="settings-form">
+    <div class="form-group">
+      <label for="base-currency">Base Currency (R₣)</label>
+      <input type="text" id="base-currency" value="RWF" required>
+    </div>
+
+    <div class="form-group">
+      <label for="currency-rate-eur">USD Rate</label>
+      <input type="number" step="0.01" id="currency-rate-eur" value="1200" required>
+    </div>
+
+    <div class="form-group">
+      <label for="currency-rate-gbp">NGN Rate</label>
+      <input type="number" step="0.01" id="currency-rate-gbp" value="3" required>
+    </div>
+
+    <button type="submit" class="btn">Save Settings</button>
+    </form>
+    <div class="import-export">
+      <h3>Import / Export Transactions</h3>
+      <button id="export-btn" class="btn">Export Transactions</button>
+      <input type="file" id="import-file" accept=".json" style="display:none;">
+      <button id="import-btn" class="btn">Import Transactions</button>
+      <div id="notification" role="status" aria-live="polite"></div>
+    </div>
+
+    </section>
+
+    <!-- stats section -->
+<div id="cap-alert" role="status" aria-live="polite" class="cap-alert"></div>
+<section id="stats" class="stats-section">
+  <h2>Your Financial Overview</h2>
+  <p class="stats-intro">A quick snapshot of your current financial health.</p>
+
+  <div class="stats-grid">
+    <div class="stat-card highlight">
+      <h3>Total Transactions</h3>
+      <p id="total-transactions">0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Amount Spent</h3>
+      <p id="total-amount">RWF 0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Top Spending Category</h3>
+      <p id="top-category">None</p>
+    </div>
+    <div class="stat-card">
+      <h3>Average Transaction</h3>
+      <p id="average-transaction">RWF 0</p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Spending by Category</h3>
+    <canvas id="spending-pie"></canvas>
+  </div>
+</section>
+
+ 
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-about">
+      <h3>FinanceTracker</h3>
+      <p>Your personal finance companion, helping students stay in control of their spending, budgeting, and goals.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#stats">Dashboard</a></li>
+        <li><a href="#add-record">Add Record</a></li>
+        <li><a href="#edit-form">Transactions</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h4>Connect</h4>
+      <div class="footer-socials">
+        <a href="mailto:c.yusuf@alustudent.com" class="footer-btn">Email Me</a>
+        <a href="https://github.com/Cherishhub0" target="_blank" class="footer-btn">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 FinanceTracker | Designed by Cherish Yusuf</p>
+  </div>
+</footer>
+
+    <!-- JS Modules -->
+    <script type="module" src="Scripts/storage.js"></script>
+    <script type="module" src="Scripts/validators.js"></script>
+    <script type="module" src="Scripts/state.js"></script>
+    <script type="module" src="Scripts/ui.js"></script>
+    <script type="module" src="Scripts/search.js"></script>
+
+    <script>
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+      sections.forEach(section => observer.observe(section));
+    </script>
+
+    </body>
+    </html>

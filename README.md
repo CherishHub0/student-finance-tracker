@@ -92,6 +92,10 @@ Example matches: "coffee coffee", "the the"
 - Test import/export: export JSON, edit file, import valid and invalid files.
 - Test keyboard navigation: use Tab/Shift+Tab and Enter, check focus outline.
 - Check cap alerts: add/remove transactions to trigger updates.
+- 
+### Github Pages
+
+https://cherishhub0.github.io/student-finance-tracker/
 
 # Wire frame(link)
 https://excalidraw.com/
